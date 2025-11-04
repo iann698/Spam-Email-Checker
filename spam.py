@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -7,7 +8,10 @@ import streamlit as st
 from datetime import datetime
 
 # Load data
-data = pd.read_csv(r'C:\Users\User\SpamEmailChecker\enron_spam_data.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # folder containing spam.py
+csv_path = os.path.join(BASE_DIR, "enron_spam_data.csv")
+
+data = pd.read_csv(csv_path)
 
 # Clean and preprocess
 data.drop(columns=['Date'], inplace=True, errors='ignore')
